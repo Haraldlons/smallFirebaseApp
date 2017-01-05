@@ -1,0 +1,22 @@
+{
+  "rules": {
+    ".read": true,
+    "users": {
+      "$uid": {
+    		".write": "$uid === auth.uid"   
+      }
+    },
+    "messages": {
+      ".write": true
+    },
+    "forms": {
+      ".write": true
+    },
+    "number": {
+      ".write": true
+    },
+    "profiles": {
+      ".write": true
+    }
+  }
+}
