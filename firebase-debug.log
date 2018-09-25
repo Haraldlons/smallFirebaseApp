@@ -1,83 +1,28 @@
-[debug] ----------------------------------------------------------------------
-[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] CLI Version:  3.2.1
-[debug] Platform:     win32
-[debug] Node Version: v6.5.0
-[debug] Time:         Wed Jan 04 2017 21:24:09 GMT+0100 (Romansk (normaltid))
-[debug] ----------------------------------------------------------------------
+[debug] [2018-09-25T18:05:29.211Z] ----------------------------------------------------------------------
+[debug] [2018-09-25T18:05:29.216Z] Command:       /usr/bin/node /usr/local/bin/firebase serve
+[debug] [2018-09-25T18:05:29.216Z] CLI Version:   4.2.1
+[debug] [2018-09-25T18:05:29.216Z] Platform:      linux
+[debug] [2018-09-25T18:05:29.216Z] Node Version:  v8.12.0
+[debug] [2018-09-25T18:05:29.216Z] Time:          Tue Sep 25 2018 20:05:29 GMT+0200 (CEST)
+[debug] [2018-09-25T18:05:29.217Z] ----------------------------------------------------------------------
 [debug] 
-[info] Starting Firebase development server...
+[debug] [2018-09-25T18:05:29.231Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-09-25T18:05:29.232Z] > authorizing via signed-in user
+[debug] [2018-09-25T18:05:29.235Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-09-25T18:05:29.235Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+
+[debug] [2018-09-25T18:05:29.449Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-25T18:05:29.454Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/angularfire-synchronized  
+ 
+[debug] [2018-09-25T18:05:30.574Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-25T18:05:30.577Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/angularfire-synchronized  
+ 
+[debug] [2018-09-25T18:05:31.931Z] <<< HTTP RESPONSE 200
 [info] 
-[info] Project Directory: C:\Users\Harald\Desktop\angularFireTutorials2
-[info] Public Directory: public
+[info] === Serving from '/home/harald/coding/simple-firebase-login-chat-project'...
 [info] 
-[info] Server listening at: http://localhost:5000
-[debug] Error: EPERM: operation not permitted, rename 'C:\Users\Harald\.config\configstore\firebase-tools.json.3794397215' -> 'C:\Users\Harald\.config\configstore\firebase-tools.json'
-    at Error (native)
-    at Object.fs.renameSync (fs.js:809:18)
-    at Function.writeFileSync [as sync] (C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\write-file-atomic\index.js:81:8)
-    at Object.set (C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\configstore\index.js:62:21)
-    at Object.Configstore.set (C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\configstore\index.js:93:11)
-    at Request._callback (C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\lib\fetchMOTD.js:51:19)
-    at Request.self.callback (C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:186:22)
-    at emitTwo (events.js:106:13)
-    at Request.emit (events.js:191:7)
-    at Request.<anonymous> (C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1081:10)
-[error] 
-[error] Error: An unexpected error has occurred.
-[debug] ----------------------------------------------------------------------
-[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] CLI Version:  3.2.1
-[debug] Platform:     win32
-[debug] Node Version: v6.5.0
-[debug] Time:         Wed Jan 04 2017 21:24:51 GMT+0100 (Romansk (normaltid))
-[debug] ----------------------------------------------------------------------
-[debug] 
-[info] Starting Firebase development server...
-[info] 
-[info] Project Directory: C:\Users\Harald\Desktop\angularFireTutorials2
-[info] Public Directory: public
-[info] 
-[info] Server listening at: http://localhost:5000
-[debug] Error: EPERM: operation not permitted, rename 'C:\Users\Harald\.config\configstore\firebase-tools.json.178593532' -> 'C:\Users\Harald\.config\configstore\firebase-tools.json'
-    at Error (native)
-    at Object.fs.renameSync (fs.js:809:18)
-    at Function.writeFileSync [as sync] (C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\write-file-atomic\index.js:81:8)
-    at Object.set (C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\configstore\index.js:62:21)
-    at Object.Configstore.set (C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\configstore\index.js:93:11)
-    at Request._callback (C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\lib\fetchMOTD.js:51:19)
-    at Request.self.callback (C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:186:22)
-    at emitTwo (events.js:106:13)
-    at Request.emit (events.js:191:7)
-    at Request.<anonymous> (C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:1081:10)
-[error] 
-[error] Error: An unexpected error has occurred.
-[debug] ----------------------------------------------------------------------
-[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] CLI Version:  3.2.1
-[debug] Platform:     win32
-[debug] Node Version: v6.5.0
-[debug] Time:         Wed Jan 04 2017 21:25:32 GMT+0100 (Romansk (normaltid))
-[debug] ----------------------------------------------------------------------
-[debug] 
-[info] Starting Firebase development server...
-[info] 
-[info] Project Directory: C:\Users\Harald\Desktop\angularFireTutorials2
-[info] Public Directory: public
-[info] 
-[info] Server listening at: http://localhost:5000
-[debug] ----------------------------------------------------------------------
-[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\Harald\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] CLI Version:  3.2.1
-[debug] Platform:     win32
-[debug] Node Version: v6.5.0
-[debug] Time:         Thu Jan 05 2017 10:31:39 GMT+0100 (Romansk (normaltid))
-[debug] ----------------------------------------------------------------------
-[debug] 
-[info] Starting Firebase development server...
-[info] 
-[info] Project Directory: C:\Users\Harald\Desktop\angularFireTutorials2
-[warn] !  Port 5000 is not available. Trying another port...
-[info] Public Directory: public
-[info] 
-[info] Server listening at: http://localhost:5001
+[debug] [2018-09-25T18:05:31.935Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/457622260259/clients/_:getWebAppConfig  
+ 
+[debug] [2018-09-25T18:05:32.349Z] <<< HTTP RESPONSE 200
+[info] i  hosting[angularfire-synchronized]: Serving hosting files from: public
+[info] ✔  hosting[angularfire-synchronized]: Local server: http://localhost:5000
