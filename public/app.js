@@ -1,10 +1,5 @@
 console.log("app.js loaded");
 
-
-
-
-
-
 // define our app and dependencies (remember to include firebase!)
 var app = angular.module("sampleApp", [
 	"firebase",
@@ -34,10 +29,6 @@ app.run(["$rootScope", "$state", function($rootScope, $state) {
 }]);
 
 app.config(["$stateProvider", "$urlRouterProvider", "$mdIconProvider", "$mdThemingProvider", function ($stateProvider, $urlRouterProvider,$mdIconProvider,$mdThemingProvider) {
-
-	// $mdIconProvider
-	//   	.iconSet("call", 'img/icons/sets/communication-icons.svg', 24)
- //  		.iconSet("social", 'img/icons/sets/social-icons.svg', 24);
 
  $mdThemingProvider.theme('docs-dark', 'default')
       .primaryPalette('yellow')

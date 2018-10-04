@@ -4,9 +4,6 @@
 	//Trenger ikke initialisere firebase på bytt igjen siden vi har gjort det i app.js
 	//kan da bruke rett fram 
 	//var ref = firebase.database().ref();
- 
-
-
 
 app.controller("mainController", ["$scope","$mdToast", "$mdDialog", "Auth", "$state", function($scope,$mdToast,$mdDialog, Auth,$state){
 
