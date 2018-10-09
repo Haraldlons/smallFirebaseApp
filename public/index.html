@@ -11,6 +11,11 @@
 
     <!-- md-icon -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.css" rel="stylesheet">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular.min.js"></script> -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/2.8.94/css/materialdesignicons.css"rel="stylesheet" media="all" rel="stylesheet" type="text/css">
+
+
 
 
 
@@ -86,23 +91,48 @@
       <!-- node_modules mappen må være i samme mappe som index.html. Hvis ikke fungerer det ikke. Helt sjukt. Brukte bostavelig talt 3 timer på å finne det ut. Går ikke an å bruke "../node_modules/....." -->
 
   <!-- Angular JS -->
-  <script src="node_modules/angular/angular.js"></script>
+
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+
+  
+  <!--<script src="node_modules/angular/angular.js"></script>-->
+<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-animate.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.20/angular-ui-router.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.7.5/angular-messages.js"></script>
+ -->  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-animate.js"></script> -->
+
+
+ <!--  <script src=""></script>
+  
+
+
+
   <script src="node_modules/angular-animate/angular-animate.js"></script>
   <script src="node_modules/angular-aria/angular-aria.js"></script>
-  <script src="node_modules/angular-material/angular-material.js"></script>
+  <script src="node_modules/angular-material/angular-material.js"></script> -->
   <!-- <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script> -->
 <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js">
 </script>
 
   
     <!-- Angular Material -->
-  <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+  <!-- <link rel="stylesheet" href="node_modules/angular-material/angular-material.css"> -->
 
     <!-- Material Design icons "MDI" -->
-  <link href="node_modules/mdi/css/materialdesignicons.min.css"rel="stylesheet" media="all" rel="stylesheet" type="text/css">
 
     <!-- Angular-Messages -->
-  <script src="node_modules/angular-messages/angular-messages.js"></script>
+  <!-- <script src="node_modules/angular-messages/angular-messages.js"></script> -->
 
     <!-- Angular UI Router -->
   <!-- <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script> -->
@@ -114,34 +144,21 @@
   <link href="//cdn.muicss.com/mui-0.9.7/css/mui.min.css" rel="stylesheet" type="text/css" />
   <script src="//cdn.muicss.com/mui-0.9.7/angular/mui-angular.min.js"></script>
 
-    <!-- Firebase -->
-  <script src="node_modules/firebase/firebase.js"></script>
-
-  <!-- AngularFire -->
-  <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
-
-
   <!-- Lodash -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.1/lodash.min.js"></script>
-
-    <!-- FirebaseUI Authentication Login Page -->
-  <script src="node_modules/firebaseui/dist/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="node_modules/firebaseui/dist/firebaseui.css" />
-
 
     <!-- App.js with all routes -->
     <!-- OBS: Må inkludere denne sist(etter angular.js) siden den bruker Angular.js greier.  -->
 
   <script src="app.js"></script>
-  <script src="config.js"></script>
   <!-- <script src="auth.js"></script> -->
 
     <!-- All controllers files -->
   <script src="components/main.ctrl.js"></script>
-  <script src="components/profilePage/profilePage.ctrl.js"></script>
-  <script src="components/chatRoom/chatRoom.ctrl.js"></script>
-  <script src="components/login/login.ctrl.js"></script>
-  <script src="components/cv/cv.ctrl.js"></script>
+  <!-- <script src="components/profilePage/profilePage.ctrl.js"></script> -->
+  <!-- <script src="components/chatRoom/chatRoom.ctrl.js"></script> -->
+  <!-- <script src="components/login/login.ctrl.js"></script> -->
+  <!-- <script src="components/cv/cv.ctrl.js"></script> -->
 
   <link rel="stylesheet" type="text/css" href="myStyle.css">
 
