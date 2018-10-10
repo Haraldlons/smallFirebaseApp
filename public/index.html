@@ -1,98 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Welcome to Haralds Hosting</title>
-  
-
-    <!-- My own stylingsheet -->
-    <!-- Tror følgende to er unødvendig siden jeg har inkludert dem nederst fra node_modules -->
-    <!-- <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script> -->
-    <!-- <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" /> -->
-
-    <!-- md-icon -->
+  <title>Welcome to example page for using kondiskalkulatoren API</title>
+  <!-- md-icon -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.css" rel="stylesheet">
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular.min.js"></script> -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/2.8.94/css/materialdesignicons.css"rel="stylesheet" media="all" rel="stylesheet" type="text/css">
-
-
-
-
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/2.8.94/css/materialdesignicons.css" rel="stylesheet" media="all" type="text/css">
 </head>
 <body ng-app="sampleApp">
 
-<div ng-controller="mainController as vm" ng-cloak>
-  <md-content class="md-padding" >
-    <md-nav-bar md-selected-nav-item="vm.currentNavItem" nav-bar-aria-label="navigation links" id="navBar">
-      <md-nav-item md-nav-sref="home" name="homeName">Hjem</md-nav-item>
-      <md-nav-item ng-if="vm.isLoggedIn" md-nav-sref="profile" name="profile">Profilside</md-nav-item>
-      <md-nav-item ng-if="vm.isLoggedIn" md-nav-sref="cv" name="cv">CV</md-nav-item>
-      <md-nav-item md-nav-sref="chat" name="chat">Chatterom</md-nav-item>
-      <md-nav-item ng-if="!vm.isLoggedIn" md-nav-sref="login" name="login">Login</md-nav-item>
-      <span flex></span>
-      <div class="md-menu-demo" ng-controller="mainController as ctrl" ng-cloak ng-if="vm.isLoggedIn">
-        <div class="menu-demo-container" layout="column" ><!-- layout-align="center center"  -->
-           <md-menu md-position-mode="target-right target">
-            <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
-              <md-icon md-menu-origin class="material-icons">settings</md-icon>
-            </md-button>
-            <md-menu-content width="4">
-              <md-menu-item>
-                <md-button disabled="disabled" ng-click="ctrl.redial($event)">
-                  <md-icon class="material-icons" md-menu-align-target >dialpad</md-icon>
-                  Valg 1
-                </md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
-                  <md-icon class="material-icons">voicemail</md-icon>
-                  Valg 2
-                </md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="ctrl.signOut()">
-                  <md-icon class="material-icons on">phonelink erase</md-icon>
-                 Logg ut
-                </md-button>
-              </md-menu-item>
-              <md-menu-divider></md-menu-divider>
-              <md-menu-item>
-                <md-button disabled="disabled" ng-click="ctrl.toggleNotifications()">
-                  <md-icon class="material-icons on">notifications</md-icon>
-                  {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
-                </md-button>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
-        </div>
-      </div>
-        
-
-    </md-nav-bar>
-  </md-content>
-</div>
-<!-- <br>
-<hr>
-<button id="sign-in-with-popup">Sign In with Popup</button>
-
-<hr>
-<br> -->
-
-<!-- <div ng-controller="loginCtrl" id="firebaseui-auth-container"></div> -->
-
-<ui-view></ui-view>
+  <div ng-controller="mainController as vm" ng-cloak>
+    <md-content class="md-padding" >
+      <md-nav-bar md-selected-nav-item="vm.currentNavItem" nav-bar-aria-label="navigation links" id="navBar">
+        <md-nav-item md-nav-sref="home" name="homeName">Hjem</md-nav-item>
+        <md-nav-item md-nav-sref="chat" name="chat">Chatterom</md-nav-item>
+        <md-nav-item ng-if="!vm.isLoggedIn" md-nav-sref="login" name="login">Login</md-nav-item>
+      </md-nav-bar>
+    </md-content>
+  </div>
 
 
- 
-
-      <!-- ALL DEPENDENCIES -->
-
-      <!-- node_modules mappen må være i samme mappe som index.html. Hvis ikke fungerer det ikke. Helt sjukt. Brukte bostavelig talt 3 timer på å finne det ut. Går ikke an å bruke "../node_modules/....." -->
-
-  <!-- Angular JS -->
+  <ui-view></ui-view>
 
 
+  <!-- Dependencies -->
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
@@ -102,40 +34,7 @@
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
-
-  
-  <!--<script src="node_modules/angular/angular.js"></script>-->
-<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-animate.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.20/angular-ui-router.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.7.5/angular-messages.js"></script>
- -->  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script> -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-animate.js"></script> -->
-
-
- <!--  <script src=""></script>
-  
-
-
-
-  <script src="node_modules/angular-animate/angular-animate.js"></script>
-  <script src="node_modules/angular-aria/angular-aria.js"></script>
-  <script src="node_modules/angular-material/angular-material.js"></script> -->
-  <!-- <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script> -->
-<script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js">
-</script>
-
-  
-    <!-- Angular Material -->
-  <!-- <link rel="stylesheet" href="node_modules/angular-material/angular-material.css"> -->
-
-    <!-- Material Design icons "MDI" -->
-
-    <!-- Angular-Messages -->
-  <!-- <script src="node_modules/angular-messages/angular-messages.js"></script> -->
-
-    <!-- Angular UI Router -->
-  <!-- <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script> -->
+  <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
 
     <!-- Lodash -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.1/lodash.min.js"></script>
@@ -147,21 +46,10 @@
   <!-- Lodash -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.1/lodash.min.js"></script>
 
-    <!-- App.js with all routes -->
-    <!-- OBS: Må inkludere denne sist(etter angular.js) siden den bruker Angular.js greier.  -->
-
+  <!-- Self written files -->
   <script src="app.js"></script>
-  <!-- <script src="auth.js"></script> -->
-
-    <!-- All controllers files -->
   <script src="components/main.ctrl.js"></script>
-  <!-- <script src="components/profilePage/profilePage.ctrl.js"></script> -->
-   <script src="components/chatRoom/chatRoom.ctrl.js"></script>
-  <!-- <script src="components/login/login.ctrl.js"></script> -->
-  <!-- <script src="components/cv/cv.ctrl.js"></script> -->
-
+  <script src="components/chatRoom/chatRoom.ctrl.js"></script>
   <link rel="stylesheet" type="text/css" href="myStyle.css">
-
-  
 </body>
 </html>
