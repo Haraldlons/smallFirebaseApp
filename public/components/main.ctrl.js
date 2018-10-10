@@ -7,7 +7,7 @@
 
         // Default values
         vm.system_id = "test";
-        vm.education_id = 11;
+        vm.education_id = 12;
         vm.ethnicity_id = 1;
         vm.age = 37;
         vm.gender_id = 1;
@@ -44,17 +44,17 @@
                 "systemId": vm.system_id,
                 "responseId": "",             //must be used if you want to update an existing response, or else remove or set blank
                 "input": {
-                    "education": 12,            //see /types
-                    "ethnicity": 1,             //see /types
-                    "gender": 1,                //see /types
-                    "workoutFrequency": 2,      //see /types
-                    "workoutTime": 2,           //see /types
-                    "hardness": 3,              //see /types
-                    "restingPulse": 45,         //beats pr minute
-                    "maximumHeartRate": 189,    //beats pr minute
-                    "weight": 83,               //in kilograms
-                    "height": 187,              //in centimeters
-                    "age": 37,
+                    "education": vm.education_id,            //see /types
+                    "ethnicity": vm.ethnicity_id,             //see /types
+                    "gender": vm.gender_id,                //see /types
+                    "workoutFrequency": vm.workoutFrequency_id,      //see /types
+                    "workoutTime": vm.workoutTime_id,           //see /types
+                    "hardness": vm.hardness_id,              //see /types
+                    "restingPulse": vm.restingPulse,         //beats pr minute
+                    "maximumHeartRate": vm.maximumHeartRate,    //beats pr minute
+                    "weight": vm.weight,               //in kilograms
+                    "height": vm.height,              //in centimeters
+                    "age": vm.age,
                     "latitude": 63.4305,        //optional
                     "longitude": 10.3951,       //optional
                     "city": "Trondheim",        //optional
@@ -91,8 +91,7 @@
 
         vm.callAPI = function () {
             console.log("Calling API with current variables");
-            vm.showToast("Calling API. Please wait...", 1, "pending");
-            vm.input_string = parseInt(vm.input_string) + 1;
+            vm.showToast("Calling API. Please wait...", 0.6, "pending");
             vm.gotSuccessResponseFromAPI = false;
             vm.gotFailedResponseFromAPI = false;
             testGetResponseAPI();

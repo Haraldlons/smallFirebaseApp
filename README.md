@@ -12,3 +12,6 @@ cd ...
 npm i 
 http-server -p 8080 -o
 ```
+
+# Questions?
+Send them to 'haraldlons@gmail.com'. 
