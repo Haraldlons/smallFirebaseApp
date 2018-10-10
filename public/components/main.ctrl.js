@@ -1,33 +1,36 @@
 (function(){
 	'use strict';
 
-app.controller("mainController", ["$scope","$mdToast", "$mdDialog", "$state", "$http", function($scope, $mdToast, $mdDialog, $state, $http){
+app.controller("mainController", ["$scope","$mdToast", "$mdDialog", "$state", "$http", "$log", function($scope, $mdToast, $mdDialog, $state, $http, $log){
     console.log("mainController loaded");
     var vm = this; // Capture variable
 
     // Variables
-    vm.system_id = "test";
-    vm.education_choice = "University qualifying examination";
-    vm.ethnicity = "White";
-    vm.age = 24;
-    vm.gender = "Male";
-    vm.workoutTime = "30 minutes or more";
-    vm.workoutFrequency = "Once a week";
-    vm.hardness = "Little hard breathing and sweating";
-    vm.restingPulse = 50;
-    vm.maximumHeartRate = 190;
-    vm.weight = 80;
-    vm.height = 180;
+    vm.system_id = "dstest";
+    vm.education_id = 11;
+    vm.ethnicity_id = 1;
+    vm.age = 37;
+    vm.gender_id = 1;
+    vm.workoutTime_id = 2;
+    vm.workoutFrequency_id = 2;
+    vm.hardness_id = 3;
+    vm.restingPulse = 45;
+    vm.maximumHeartRate = 189;
+    vm.weight = 83;
+    vm.height = 187;
     vm.isLoggedIn = false; // Is used in header
     vm.currentNavItem = 'homeName'; // Is used in header
+    $scope.checked = true;
+    $scope.disableSystemID = true;
+    vm.gotSuccessResponseFromAPI = false;
+    vm.gotFailedResponseFromAPI = false;
 
-
-	vm.showToast = function showToast(message){
+	vm.showToast = function showToast(message, time){
 		$mdToast.show(
 			$mdToast.simple()
 					.content(message)
 					.position('top, right')
-					.hideDelay(5000)
+					.hideDelay(time * 1000)
 			);
 	};
 
@@ -63,6 +66,7 @@ app.controller("mainController", ["$scope","$mdToast", "$mdDialog", "$state", "$
     function testGetResponseAPI() {
         const proxyurl = "https://cors-anywhere.herokuapp.com/"; // https://tinyurl.com/y9p4bfl6
         const url = 'https://www.worldfitnesslevel.org/service/api/response';
+
         const data = {
             "userId": "asdf",
             "systemId": vm.system_id,
@@ -94,8 +98,13 @@ app.controller("mainController", ["$scope","$mdToast", "$mdDialog", "$state", "$
             headers: {'Content-Type': 'application/json'},
         }).then(function (data) {
             console.log(data);
+            vm.gotSuccessResponseFromAPI = true;
+            vm.gotFailedResponseFromAPI = false;
+            vm.response = data.data;
         }).catch(function (data, status, headers, config) {
             //todo: report to user
+            vm.gotSuccessResponseFromAPI = false;
+            vm.gotFailedResponseFromAPI = true;
             console.log("Error while doing");
             $log.error({
                 data: data,
@@ -110,7 +119,9 @@ app.controller("mainController", ["$scope","$mdToast", "$mdDialog", "$state", "$
     vm.callAPI = function () {
         console.log("Calling API with current variables");
         vm.input_string = parseInt(vm.input_string) + 1;
-        // testGetResponseAPI();
+        vm.gotSuccessResponseFromAPI = false;
+        vm.gotFailedResponseFromAPI = false;
+        testGetResponseAPI();
     };
 
 
@@ -129,7 +140,7 @@ app.controller("mainController", ["$scope","$mdToast", "$mdDialog", "$state", "$
                 /*User pressed OK*/
                 /*result wil be what user inputted*/
                 console.log("You pressed OK");
-                showToast("You pressed OK");
+                vm.showToast("You pressed OK", 5);
                 // var updates = {};
                 //  updates["/users/"+uid+"/bilde"] = "";
                 //  rootRef.update(updates);
@@ -138,7 +149,7 @@ app.controller("mainController", ["$scope","$mdToast", "$mdDialog", "$state", "$
             }, function() {
                 /*User pressed cancel*/
                 console.log("You pressed CANCEL");
-                showToast("You pressed CANCEL");
+                vm.showToast("You pressed CANCEL", 5);
                 // showToast("Du endret ikke passordet")
             });
     };
@@ -146,6 +157,18 @@ app.controller("mainController", ["$scope","$mdToast", "$mdDialog", "$state", "$
     vm.printAllData = function(){
         console.log()
     };
+
+    function getEthnicityMappedFromStringToNumber() {
+            for (var hardnessOptionKey in valueOptions.hardness) {
+                if (valueOptions.hardness[hardnessOptionKey].id == hardnessId) {
+                    return valueOptions.hardness[hardnessOptionKey].value;
+                }
+            }
+    }
+
+    function getInputMappedFromStringToNumber(){
+
+    }
 
     vm.valueOptions = {
         education: [
