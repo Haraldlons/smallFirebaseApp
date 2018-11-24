@@ -1,28 +1,25 @@
 <md-content>
-	<h3>Chatterom</h1>
-	<p>Her kan du chatte uavhengig av om du er innlogget eller ikke</h4>
+	<h3>Chatterom</h3>
+	<p>Her kan du chatte uavhengig av om du er innlogget eller ikke</p>
 	<p>{{vm.isLoggedInOrNot}}</p>
 
 	<div>
-	  <p>
-	    Sort by:
-	    <select ng-model="orderBy">
-	      <option>from</option>
-	      <option>content</option>
-	      <option>timestamp</option>
-	    </select>
-	  </p>
+		<p>
+			Sort by:
+			<select ng-model="orderBy">
+				<option>from</option>
+				<option>content</option>
+				<option>timestamp</option>
+			</select>
+			Search: <input ng-model="searchText"></p>
 
-	  <p>Search: <input ng-model="searchText"></p>
-
-	  <ul class="chatbox">
+		<ul class="chatbox">
 	    <!-- arrays are fully sortable and filterable -->
 	    <li ng-repeat="message in vm.messages | orderBy:orderBy | filter:searchText">
 	      {{ message.from }}: {{ message.content }}
 
 	      <!-- delete a message using $remove -->
-	      <a href="" ng-click="vm.messages.$remove(message)"><md-icon class="material-icons">delete</md-icon>
-</a>
+	      <a href="" ng-click="vm.messages.$remove(message)"><md-icon class="material-icons">delete</md-icon></a>
 	    </li>
 	  </ul>
 

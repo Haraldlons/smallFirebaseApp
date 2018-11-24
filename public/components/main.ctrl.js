@@ -52,7 +52,7 @@ if (user != null) {
 $scope.$on("navBarUpdate", function(event, data){
     // console.log("$on detected data: ", data);
     vm.currentNavItem = data;
-  })
+  });
 $scope.$on("showToast", function(event, data){
   showToast(data);
   console.log("Data showToast: ", data);
