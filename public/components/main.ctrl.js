@@ -1,150 +1,261 @@
 (function(){
-	'use strict'
+	'use strict';
 
-	//Trenger ikke initialisere firebase på bytt igjen siden vi har gjort det i app.js
-	//kan da bruke rett fram 
-	//var ref = firebase.database().ref();
+    app.controller("mainController", ["$scope","$mdToast", "$mdDialog", "$state", "$http", "$log", function($scope, $mdToast, $mdDialog, $state, $http, $log){
+        console.log("mainController loaded");
+        var vm = this; // Capture variable
 
-app.controller("mainController", ["$scope","$mdToast", "$mdDialog", "Auth", "$state", function($scope,$mdToast,$mdDialog, Auth,$state){
+        // Default values
+        vm.system_id = "test";
+        vm.education_id = 12;
+        vm.ethnicity_id = 1;
+        vm.age = 37;
+        vm.gender_id = 1;
+        vm.workoutTime_id = 2;
+        vm.workoutFrequency_id = 2;
+        vm.hardness_id = 3;
+        vm.restingPulse = 45;
+        vm.maximumHeartRate = 189;
+        vm.weight = 83;
+        vm.height = 187;
+        vm.checked = true;
+        vm.disableSystemID = true;
+        vm.gotSuccessResponseFromAPI = false;
+        vm.gotFailedResponseFromAPI = false;
+        vm.currentNavItem = 'homeName'; // Is used in header
 
-	/*Dette er en såkalt 'Capture Variable'. Kan bruke vm i steden for $scope*/
-	var vm = this;
-  vm.auth = Auth;
 
-	/*Definerer alle variabler brukt*/
-	vm.currentNavItem;
-	vm.message;
-  vm.nyMelding;
-  vm.isLoggedIn = false;
-	vm.showAccount = true;
-  vm.currentNavItem = 'homeName';
-	vm.message = "Melding fra mainController";
-  vm.nyMelding = "Dette er en ny melding fra HomeCtrl"
-  /*Definerer alle funksjoner brukt*/
-  vm.showToast = showToast;
-  vm.signOut = signOut;
+        vm.showToast = function showToast(message, time, type){
+            $mdToast.show(
+                $mdToast.simple()
+                        .content(message)
+                        .position('top, right')
+                        .hideDelay(time * 1000)
+                        .theme(type + "-toast")
+                );
+        };
 
 
-	
-  /*Blir alt for mange Toast'er*/
-// vm.auth.$getAuth(function(firebaseUser){
-//   if(firebaseUser){
-//     showToast("Du er logget!\nfirebaseUser.email");
-//   }else{
-//     showToast("Du er ikke logget inn");
-//   }
-// })
+        function testGetResponseAPI() {
+            const proxyurl = "https://cors-anywhere.herokuapp.com/"; // https://tinyurl.com/y9p4bfl6
+            const url = 'https://www.worldfitnesslevel.org/service/api/response';
+            const data = {
+                "userId": "asdf",
+                "systemId": vm.system_id,
+                "responseId": "",             //must be used if you want to update an existing response, or else remove or set blank
+                "input": {
+                    "education": vm.education_id,            //see /types
+                    "ethnicity": vm.ethnicity_id,             //see /types
+                    "gender": vm.gender_id,                //see /types
+                    "workoutFrequency": vm.workoutFrequency_id,      //see /types
+                    "workoutTime": vm.workoutTime_id,           //see /types
+                    "hardness": vm.hardness_id,              //see /types
+                    "restingPulse": vm.restingPulse,         //beats pr minute
+                    "maximumHeartRate": vm.maximumHeartRate,    //beats pr minute
+                    "weight": vm.weight,               //in kilograms
+                    "height": vm.height,              //in centimeters
+                    "age": vm.age,
+                    "latitude": 63.4305,        //optional
+                    "longitude": 10.3951,       //optional
+                    "city": "Trondheim",        //optional
+                    "country": "Norway",        //optional
+                    "group": ""                 //optional - only use group in agreement with API provider
+                }
+            };
 
-var user = firebase.auth().currentUser;
-
-if (user != null) {
-  // showToast("Du er logget inn");
-  user.providerData.forEach(function (profile) {
-    console.log("Sign-in provider: "+profile.providerId);
-    console.log("  Provider-specific UID: "+profile.uid);
-    console.log("  Name: "+profile.displayName);
-    console.log("  Email: "+profile.email);
-    console.log("  Photo URL: "+profile.photoURL);
-  });
-}
-  /*When we go to different states we need to update the red line under the tabs*/
-  /*Cause this wil not persist during reload of page*/
-$scope.$on("navBarUpdate", function(event, data){
-    // console.log("$on detected data: ", data);
-    vm.currentNavItem = data;
-  });
-$scope.$on("showToast", function(event, data){
-  showToast(data);
-  console.log("Data showToast: ", data);
-})
-
- vm.auth.$onAuthStateChanged(function(firebaseUser) {
-        vm.firebaseUser = firebaseUser;
-      if(firebaseUser){
-        if(firebaseUser.displayName){
-          vm.user = firebaseUser.displayName;
-        }else {
-          vm.user = firebaseUser.email;
+            $http({
+                url: proxyurl + url,
+                method: 'POST',
+                data: data,
+                headers: {'Content-Type': 'application/json'},
+            }).then(function (data) {
+                vm.showToast("Successfully called API", 5, "success");
+                console.log(data);
+                vm.gotSuccessResponseFromAPI = true;
+                vm.gotFailedResponseFromAPI = false;
+                vm.response = data.data;
+            }).catch(function (data, status, headers, config) {
+                vm.showToast("Error requesting data from API", 5, "error");
+                console.log("Error while calling API");
+                vm.gotSuccessResponseFromAPI = false;
+                vm.gotFailedResponseFromAPI = true;
+                $log.error({
+                    data: data,
+                    status: status,
+                    headers: headers,
+                    config: config
+                });
+            });
         }
-        vm.isLoggedIn = true;
-      }else {
-          vm.isLoggedIn = false;
-      }
-    });
-
-  /*Handling the sign out process*/
- function signOut(){
-  $state.go("home");
-  vm.auth.$signOut();
-  showToast("Du logget ut");
-    vm.currentNavItem = 'homeName';
- }
 
 
-	function showToast(message){
-		$mdToast.show(
-			$mdToast.simple()
-					.content(message)
-					.position('top, right')
-					.hideDelay(1000)
-			);
-	}
-
-	/*Start Icon greier*/
- var originatorEv;
-
-    vm.openMenu = function($mdOpenMenu, ev) {
-      originatorEv = ev;
-      $mdOpenMenu(ev);
-    };
-
-    vm.notificationsEnabled = true;
-    vm.toggleNotifications = function() {
-      vm.notificationsEnabled = !vm.notificationsEnabled;
-    };
-
-    vm.redial = function() {
-      $mdDialog.show(
-        $mdDialog.alert()
-          .targetEvent(originatorEv)
-          .clickOutsideToClose(true)
-          .parent('body')
-          .title('Suddenly, a redial')
-          .textContent('You just called a friend; who told you the most amazing story. Have a cookie!')
-          .ok('That was easy')
-      );
-
-      originatorEv = null;
-    };
-
-    vm.checkVoicemail = function() {
-      // vm never happens.
-    };
-	/*Slutt Icon greier*/
-
-}]); /*End mainController*/
+        vm.callAPI = function () {
+            console.log("Calling API with current variables");
+            vm.showToast("Calling API. Please wait...", 0.6, "pending");
+            vm.gotSuccessResponseFromAPI = false;
+            vm.gotFailedResponseFromAPI = false;
+            testGetResponseAPI();
+        };
 
 
-
-
-
-
-
-app.controller("AccountCtrl", ["currentAuth","$scope", function(currentAuth,$scope) {
-  // currentAuth (provided by resolve) will contain the
-  // authenticated user or null if not signed in
-
-  /*Capture variable, vm= view model, bare enklere å bruke enn $scope*/
-  var vm = vm;
-  
-  /*Definerer variabler brukt*/
-  vm.message = "Melding fra AccountCtrl";
-  vm.currentNavItem = 'accountName';
-  /*Definerer funksjoner brukt*/
-
-
-}]);
-
-
-
-})(); /*End hele shiten*/
+        vm.valueOptions = {
+            education: [
+                {
+                    id: 1,
+                    value: "1",
+                    text: "Primary school 7-10 years"
+                },
+                {
+                    id: 2,
+                    value: "2",
+                    text: "Continuation school"
+                },
+                {
+                    id: 3,
+                    value: "3",
+                    text: "Folk high school"
+                },
+                {
+                    id: 4,
+                    value: "4",
+                    text: "High school"
+                },
+                {
+                    id: 5,
+                    value: "5",
+                    text: "Intermediate school"
+                },
+                {
+                    id: 6,
+                    value: "6",
+                    text: "Vocational school"
+                },
+                {
+                    id: 7,
+                    value: "7",
+                    text: "1-2 years high school"
+                },
+                {
+                    id: 8,
+                    value: "8",
+                    text: "University qualifying examination"
+                },
+                {
+                    id: 9,
+                    value: "9",
+                    text: "Junior college"
+                },
+                {
+                    id: 10,
+                    value: "10",
+                    text: "A levels University or other post-secondary education"
+                },
+                {
+                    id: 11,
+                    value: "11",
+                    text: "Less than 4 years University/college"
+                },
+                {
+                    id: 12,
+                    value: "12",
+                    text: "4 years or more University/college"
+                }
+            ],
+            ethnicity: [
+                {
+                    id: 1,
+                    value: "white",
+                    text: "White"
+                },
+                {
+                    id: 2,
+                    value: "hispanic_or_latino",
+                    text: "Hispanic or Latino"
+                },
+                {
+                    id: 3,
+                    value: "black_or_african_american",
+                    text: "Black or African American"
+                },
+                {
+                    id: 4,
+                    value: "native_american_or_american_indian",
+                    text: "Native American or American Indian"
+                },
+                {
+                    id: 5,
+                    value: "asian_pacific_islander",
+                    text: "Asian / Pacific Islander"
+                },
+                {
+                    id: 6,
+                    value: "other",
+                    text: "Other"
+                }
+            ],
+            gender: [
+                {
+                    id: 1,
+                    value: "MALE",
+                    text: "Male"
+                },
+                {
+                    id: 2,
+                    value: "FEMALE",
+                    text: "Female"
+                }
+            ],
+            workoutFrequency: [
+                {
+                    id: 1,
+                    value: 0,
+                    text: "Almost never or less than once a week"
+                },
+                {
+                    id: 2,
+                    value: 1,
+                    text: "Once a week"
+                },
+                {
+                    id: 3,
+                    value: 2,
+                    text: "2-3 times a week"
+                },
+                {
+                    id: 4,
+                    value: 3,
+                    text: "Almost every day"
+                }
+            ],
+            workoutTime: [
+                {
+                    id: 1,
+                    value: 1,
+                    text: "Under 30 min"
+                },
+                {
+                    id: 2,
+                    value: 1.5,
+                    text: "30 minutes or more"
+                }
+            ],
+            hardness: [
+                {
+                    id: 1,
+                    value: 1,
+                    text: "I take it easy without breathing hard or sweating"
+                },
+                {
+                    id: 2,
+                    value: 5,
+                    text: "Little hard breathing and sweating"
+                },
+                {
+                    id: 3,
+                    value: 10,
+                    text: "I go all out"
+                }
+            ]
+        };
+    }]);
+})();

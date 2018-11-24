@@ -1,13 +1,17 @@
-# simple-firebase-login-chat-project
-Small web-app made to learn how to use Firebase as a back-end.
+# Simple Fitness Calculator API Request Example
+Small web-app made to learn how to call fitness calculator api
 
-Hosted at firebase:
-https://angularfire-synchronized.firebaseapp.com/#!/login
 
 # Prerequisite
-- Firebase cli
+- npm
 
-# Host locally
+# Get setup
 ```bash
-firebase serve
+git clone ...
+cd ...
+npm i 
+http-server -p 8080 -o
 ```
+
+# Questions?
+Send them to 'haraldlons@gmail.com'. 

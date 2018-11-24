@@ -29,7 +29,7 @@
 /*For state greier*/
 .active { color: red; font-weight: bold; }
 
-#navBar: {
+#navBar {
     color: #0019ff;
 }
 
@@ -62,10 +62,6 @@ p {
   min-height: 200px; }
 
 
-body {
-    background-image: #afafaf;
-}
-
 /*main.html*/
 #mainContent{
   padding-left: 20px;
@@ -76,7 +72,8 @@ body {
     font: 14px/1.5em "Lucida Grande",Arial,sans-serif;
     margin: 20px;
     width: auto;*/
-    width: 1000px; 
+    height: auto;
+    width: 1000px;
     margin: 0 auto;
 
 }
@@ -88,4 +85,19 @@ body {
 
 #myimg {
    max-width: 250px;
+}
+
+md-toast.md-error-toast-theme div.md-toast-content{
+    color: white !important;
+    background-color: red !important;
+}
+
+md-toast.md-success-toast-theme div.md-toast-content{
+    color: white !important;
+    background-color: green !important;
+}
+
+md-toast.md-pending-toast-theme div.md-toast-content{
+    color: black !important;
+    background-color: yellow !important;
 }
